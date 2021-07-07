@@ -81,7 +81,7 @@ def fazer_jogada(rodada):
                 erro -= 1
                 exibir_tabuleiro()
             else:
-                print('=- =- =- =- =- Busque casas vazias -= -= -= -= -=')
+                print(' =- =- =- =- =- Busque casas vazias -= -= -= -= -= ')
     else:
         erro = 1
         ordem_jogada += 1
