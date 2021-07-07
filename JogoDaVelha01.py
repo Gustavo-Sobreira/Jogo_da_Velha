@@ -11,6 +11,7 @@
 #6- Caso jogadas for igual a 9 deu velha
 #Extas - Música, som de cada jogada, comemoração do vencedor
 from random import randint
+
 def criar_tabuleiro():
     #Cria a matriz para o jogo
     for l in range(3):
@@ -49,20 +50,52 @@ def selecionar_player():
             erro -= 1
     return escolha
 
-def fazer_jogada():
-    jogadas = 0
-    player  = 0
-    bot     = 0
-    if jogadas == 0:
-        joga = randint(1, 2)
+def fazer_jogada(rodada):
+    #Já que se player escolhe 'X' obrigatoriamente bot escolhe 'O' temos:
+    if escolha == 1:
+        simbolo_player = '❌'
+        simbolo_bot = '🅾️'
+    else:
+        simbolo_player = '🅾️'
+        simbolo_bot = '❌'
 
-        if joga == 1:
-            #vez do player
+    #Para que o jogo nunca comece com o mesmo player, coloco um randint para deixar aleatório
+    ordem_jogada = 0
+    if rodada == 0:
+        ordem_jogada = randint(1, 2)
+        rodada += 1
 
-    while jogadas != 9:
+    #Assim caso o número que seja sorteado seja 2 o player joga
+    if ordem_jogada % 2 == 0:
+        erro = 1
+        ordem_jogada -= 1
 
+        #Evitando de usar 'Break' já que é uma função exclusiva Python busco essa solução com a função 'erro'
+        #Só haverá mudanças em erro caso o jogador acerte a jogada
+        while erro != 0:
+            linha = int(input('Selecione uma coordenada utilizando apenas os números\n'
+                              'Linha:  '))
+            coluna = int(input('Coluna: '))
+            if campo[linha][coluna] == '🟦':
+                campo[linha][coluna] = simbolo_player
+                erro -= 1
+                exibir_tabuleiro()
+            else:
+                print('=- =- =- =- =- Busque casas vazias -= -= -= -= -=')
+    else:
+        erro = 1
+        ordem_jogada += 1
+        while erro != 0:
+            linha = randint(0, 3)
+            coluna = randint(0, 3)
+            if campo[linha][coluna] == '🟦':
+                campo[linha][coluna] = simbolo_player
+                erro -= 1
+                exibir_tabuleiro()
 campo = []
-
+rodada = 0
+escolha = selecionar_player()
+fazer_jogada()
 
 
 
