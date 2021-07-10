@@ -12,19 +12,23 @@
 #Extas - Música, som de cada jogada, comemoração do vencedor
 from random import randint
 
+#Funções de Mecanica:
+
 def criar_tabuleiro():
     #Cria a matriz para o jogo
     for l in range(3):
         linha = []
         for c in range(3):
-            linha.append('🟪')
+            linha.append('🟫')
         campo.append(linha)
 
 def exibir_tabuleiro():
     criar_tabuleiro()
+    alinhar()
     #Enumera as colunas
+    print('COLUNA')
     num = 0
-    print(' ' * 4, end=' ')
+    print('    ' * 4, end=' ')
     for i in range(3):
         print(f'{num}', end='  ')
         num += 1
@@ -32,13 +36,14 @@ def exibir_tabuleiro():
 
     #Aqui sai a numeração das linhas
     for l in range(3):
-        print(f' {l}  ', end='')
+        print(f'             {l} ', end=' ')
 
         #Neste 'for c' é que é feito o visual do tabuleiro, aqui ele ganha forma
         for c in range(3):
             print(f'{campo[l][c]} ', end='')
         print()
         #O print a cima serve para que as linhas sejam puladas, recomendo que coloquem uma '#' nele e rodem o código
+    alinhar()
 
 def selecionar_player():
     erro = 1
@@ -79,7 +84,7 @@ def fazer_jogada(rodada):
                                       'Linha:  '))
                 coluna = int(input('Coluna: '))
                 if linha in (0, 1, 2) and coluna in (0, 1, 2):
-                    if campo[linha][coluna] == '🟪':
+                    if campo[linha][coluna] == '🟫':
                         campo[linha][coluna] = simbolo_player
                         erro -= 1
                         exibir_tabuleiro()
@@ -92,7 +97,7 @@ def fazer_jogada(rodada):
             while erro != 0:
                 linha = randint(0, 2)
                 coluna = randint(0, 2)
-                if campo[linha][coluna] == '🟪':
+                if campo[linha][coluna] == '🟫':
                     campo[linha][coluna] = simbolo_bot
                     erro -= 1
                     exibir_tabuleiro()
@@ -101,6 +106,13 @@ def fazer_jogada(rodada):
 def ganhar():
     print('')
 
+
+#Funções gráficas:
+
+def alinhar():
+    print('\n')
+    print('='*40)
+    print('\n')
 
 campo = []
 exibir_tabuleiro()
