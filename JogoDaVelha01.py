@@ -22,27 +22,33 @@ def criar_tabuleiro():
             linha.append('🟫')
         campo.append(linha)
 
-def exibir_tabuleiro():
-    criar_tabuleiro()
-    alinhar()
-    #Enumera as colunas
-    print('COLUNA')
+def enumerar_colunas():
+    print('                   COLUNA')
     num = 0
-    print('    ' * 4, end=' ')
+    print('    ' * 4, end='  ')
     for i in range(3):
         print(f'{num}', end='  ')
         num += 1
     print()
 
-    #Aqui sai a numeração das linhas
+def enumerar_linha():
+    linha = 'INHA'
+    print('          L')
     for l in range(3):
-        print(f'             {l} ', end=' ')
+        print(f'          {linha[l]}  {l}  ', end=' ')
 
-        #Neste 'for c' é que é feito o visual do tabuleiro, aqui ele ganha forma
+        # Neste 'for c' é que é feito o visual do tabuleiro, aqui ele ganha forma
         for c in range(3):
             print(f'{campo[l][c]} ', end='')
         print()
-        #O print a cima serve para que as linhas sejam puladas, recomendo que coloquem uma '#' nele e rodem o código
+    print('          A')
+    # O print a cima serve para que as linhas sejam puladas, recomendo que coloquem uma '#' nele e rodem o código
+
+def exibir_tabuleiro():
+    criar_tabuleiro()
+    alinhar()
+    enumerar_colunas()
+    enumerar_linha()
     alinhar()
 
 def selecionar_player():
