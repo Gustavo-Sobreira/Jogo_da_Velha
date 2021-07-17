@@ -62,6 +62,20 @@ def selecionar_player():
             erro -= 1
     return escolha
 
+def verificar_ganhador():
+    ganhador = 0
+    for c in range(0, 3):
+        if (campo[0][c] == '🔳' and campo[1][c] == '🔳' and campo[2][c] == '🔳') \
+                or (campo[0][0] == '🔳' and campo[1][1] == '🔳' and campo[2][2] == '🔳')\
+                or campo[0][2] == '🔳' and campo[1][1] == '🔳' and campo[2][0] == '🔳':
+            ganhador += 1
+        else:
+            if (campo[0][c] == '🔘' and campo[1][c] == '🔘' and campo[2][c] == '🔘') \
+                    or (campo[0][0] == '🔘' and campo[1][1] == '🔘' and campo[2][2] == '🔘') \
+                    or campo[0][2] == '🔘' and campo[1][1] == '🔘' and campo[2][0] == '🔘':
+                ganhador += 2
+    return ganhador
+
 def fazer_jogada(rodada):
     #Já que se player escolhe 'X' obrigatoriamente bot escolhe 'O' temos:
     if escolha == 1:
@@ -77,6 +91,12 @@ def fazer_jogada(rodada):
         ordem_jogada = randint(1, 2)
         rodada += 1
     while rodada != 10:
+        if verificar_ganhador() != 0:
+            if verificar_ganhador() == 1:
+                print('O jogador 🔳 VENCEU')
+            else:
+                print('O jogador 🔘 VENCEU')
+            break
 
         #Assim caso o número que seja sorteado seja 2 o player joga
         if ordem_jogada % 2 == 0:
@@ -95,6 +115,7 @@ def fazer_jogada(rodada):
                         erro -= 1
                         exibir_tabuleiro()
                         rodada += 1
+
                 else:
                     print(' =- =- =- =- =- Busque casas vazias -= -= -= -= -= ')
         else:
@@ -108,9 +129,13 @@ def fazer_jogada(rodada):
                     erro -= 1
                     exibir_tabuleiro()
                     rodada += 1
+        if rodada == 10:
+            print('Deu Velha')
 
-def ganhar():
-    print('')
+
+
+
+
 
 
 #Funções gráficas:
@@ -123,4 +148,5 @@ def alinhar():
 campo = []
 exibir_tabuleiro()
 escolha = selecionar_player()
+verificar_ganhador()
 fazer_jogada(0)
