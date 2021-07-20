@@ -1,18 +1,6 @@
 #Sobreira Gustavo
-
-#Passos:
-#1- Entarda
-#2- Escolher símbolo
-#3- Tirar na sorte o primeiro jogador
-#4- Adcionar jogada na matriz
-#3.1- Jogador 2 joga
-#4.1- Adicionar jogada na matriz
-#5- Verifica se ultimo a jogar ganhou
-#6- Caso jogadas for igual a 9 deu velha
-#Extas - Música, som de cada jogada, comemoração do vencedor
+#Falta u, placar e repetições
 from random import randint
-
-#Funções de Mecanica:
 
 def criar_tabuleiro():
     #Cria a matriz para o jogo
@@ -131,14 +119,6 @@ def fazer_jogada(rodada):
                     rodada += 1
         if rodada == 10:
             print('Deu Velha')
-
-
-
-
-
-
-
-#Funções gráficas:
 
 def alinhar():
     print('\n')
